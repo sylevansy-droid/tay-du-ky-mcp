@@ -1,0 +1,11 @@
+#!/usr/bin/env node
+const readline=require("readline");
+const tools=[
+{name:"tay_du_ky_ke_chuyen",description:"Kể hoặc tiếp tục một đoạn truyện Tây Du Ký bằng tiếng Việt.",inputSchema:{type:"object",properties:{chu_de:{type:"string"},do_dai:{type:"string",enum:["ngan","vua","dai"]}},required:["chu_de"]}},
+{name:"tay_du_ky_tom_tat",description:"Tóm tắt một hồi, nhân vật hoặc sự kiện trong Tây Du Ký.",inputSchema:{type:"object",properties:{noi_dung:{type:"string"}},required:["noi_dung"]}},
+{name:"tay_du_ky_hoi_dap",description:"Hỏi đáp về nhân vật và sự kiện Tây Du Ký.",inputSchema:{type:"object",properties:{cau_hoi:{type:"string"}},required:["cau_hoi"]}},
+{name:"tay_du_ky_nhan_vat",description:"Giới thiệu một nhân vật trong Tây Du Ký.",inputSchema:{type:"object",properties:{ten:{type:"string"}},required:["ten"]}}
+];
+const out=x=>process.stdout.write(JSON.stringify(x)+"\n");
+function text(n,a){if(n==="tay_du_ky_ke_chuyen")return `Hãy kể bằng tiếng Việt về "${a.chu_de}". Độ dài ${a.do_dai||"vua"}. Dựa trên cốt truyện Tây Du Ký, không chép nguyên văn bản dịch hiện đại.`;if(n==="tay_du_ky_tom_tat")return `Hãy tóm tắt bằng tiếng Việt nội dung Tây Du Ký về "${a.noi_dung}".`;if(n==="tay_du_ky_hoi_dap")return `Hãy trả lời bằng tiếng Việt câu hỏi về Tây Du Ký: "${a.cau_hoi}".`;if(n==="tay_du_ky_nhan_vat")return `Hãy giới thiệu nhân vật "${a.ten}" trong Tây Du Ký: thân phận, tính cách, vai trò và sự kiện nổi bật.`;}
+readline.createInterface({input:process.stdin,crlfDelay:Infinity}).on("line",l=>{let m;try{m=JSON.parse(l)}catch{return}let id=m.id;if(m.method==="initialize")out({jsonrpc:"2.0",id,result:{protocolVersion:m.params?.protocolVersion||"2025-03-26",capabilities:{tools:{}},serverInfo:{name:"tay-du-ky-mcp",version:"1.0.0"}}});else if(m.method==="notifications/initialized")return;else if(m.method==="ping")out({jsonrpc:"2.0",id,result:{}});else if(m.method==="tools/list")out({jsonrpc:"2.0",id,result:{tools}});else if(m.method==="tools/call"){let t=text(m.params?.name,m.params?.arguments||{});out(t?{jsonrpc:"2.0",id,result:{content:[{type:"text",text:t}]}}:{jsonrpc:"2.0",id,error:{code:-32602,message:"Unknown tool"}})}else if(id!==undefined)out({jsonrpc:"2.0",id,error:{code:-32601,message:"Method not found"}})});

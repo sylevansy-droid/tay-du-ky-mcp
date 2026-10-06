@@ -1,0 +1,16 @@
+{
+  "name": "tay-du-ky-mcp",
+  "version": "1.0.0",
+  "description": "Vietnamese MCP tools for Journey to the West",
+  "main": "server.js",
+  "bin": {
+    "tay-du-ky-mcp": "server.js"
+  },
+  "scripts": {
+    "start": "node server.js"
+  },
+  "engines": {
+    "node": ">=18"
+  },
+  "license": "MIT"
+}
