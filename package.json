@@ -1,13 +1,26 @@
 {
   "name": "tay-du-ky-mcp",
   "version": "1.0.0",
-  "description": "Vietnamese MCP tools for Journey to the West",
-  "main": "server.js",
+  "type": "module",
+  "description": "MCP tiếng Việt về Tây Du Ký cho Xiaozhi và các MCP client",
   "bin": {
-    "tay-du-ky-mcp": "server.js"
+    "tay-du-ky-mcp": "./dist/index.js"
   },
+  "files": [
+    "dist"
+  ],
   "scripts": {
-    "start": "node server.js"
+    "build": "tsc",
+    "prepublishOnly": "npm run build",
+    "start": "node dist/index.js"
+  },
+  "dependencies": {
+    "@modelcontextprotocol/sdk": "^1.25.3",
+    "zod": "^4.0.0"
+  },
+  "devDependencies": {
+    "@types/node": "^22.0.0",
+    "typescript": "^5.8.2"
   },
   "engines": {
     "node": ">=18"

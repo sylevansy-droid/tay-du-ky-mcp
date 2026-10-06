@@ -1,5 +1,23 @@
 # Tây Du Ký MCP
 
-MCP tiếng Việt với 4 tools: kể chuyện, tóm tắt, hỏi đáp và nhân vật.
+MCP STDIO dùng `@modelcontextprotocol/sdk`, theo cấu trúc của project mẫu `mcp-trends-hub`.
 
-Chạy: `npm start`
+## Tools
+- `tay_du_ky_ke_chuyen`
+- `tay_du_ky_tom_tat`
+- `tay_du_ky_hoi_dap`
+- `tay_du_ky_nhan_vat`
+
+## Local
+```bash
+npm install
+npm run build
+npm start
+```
+
+## imcp.pro sau khi package đã được publish lên npm
+- Mode: STDIO
+- Command: `npx`
+- Arguments: `-y`, `tay-du-ky-mcp`
+
+Không cần biến môi trường.
