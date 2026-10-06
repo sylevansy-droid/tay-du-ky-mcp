@@ -1,0 +1,17 @@
+name: Test Tay Du Ky MCP
+
+on:
+  workflow_dispatch:
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+
+      - name: Test MCP startup
+        run: timeout 10s npx -y tay-du-ky-mcp@1.0.1 || code=$?; if [ "${code:-0}" -eq 124 ]; then echo "MCP stayed running - OK"; exit 0; else exit "${code:-0}"; fi
