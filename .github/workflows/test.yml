@@ -13,5 +13,8 @@ jobs:
         with:
           node-version: 20
 
-      - name: Test MCP startup
-        run: timeout 10s npx -y tay-du-ky-mcp@1.0.1 || code=$?; if [ "${code:-0}" -eq 124 ]; then echo "MCP stayed running - OK"; exit 0; else exit "${code:-0}"; fi
+      - name: Test MCP handshake and tools
+        run: |
+          npx -y @modelcontextprotocol/inspector --cli \
+            npx -y tay-du-ky-mcp@1.0.1 \
+            --method tools/list
