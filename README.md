@@ -1,23 +1,17 @@
-# Tây Du Ký MCP
+# Tây Du Ký MCP — bản iPhone
 
-MCP STDIO dùng `@modelcontextprotocol/sdk`, theo cấu trúc của project mẫu `mcp-trends-hub`.
+Bản phẳng: tất cả file source nằm ở thư mục gốc để upload bằng iPhone dễ dàng.
 
 ## Tools
-- `tay_du_ky_ke_chuyen`
-- `tay_du_ky_tom_tat`
-- `tay_du_ky_hoi_dap`
-- `tay_du_ky_nhan_vat`
+- tay_du_ky_ke_chuyen
+- tay_du_ky_tom_tat
+- tay_du_ky_hoi_dap
+- tay_du_ky_nhan_vat
 
-## Local
-```bash
-npm install
-npm run build
-npm start
-```
+## Build
+`npm install`
+`npm run build`
+`npm start`
 
-## imcp.pro sau khi package đã được publish lên npm
-- Mode: STDIO
-- Command: `npx`
-- Arguments: `-y`, `tay-du-ky-mcp`
-
-Không cần biến môi trường.
+## imcp.pro (sau khi package được publish npm)
+STDIO → npx → arguments: `-y` và `tay-du-ky-mcp`
